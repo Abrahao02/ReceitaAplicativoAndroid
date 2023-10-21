@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-
+    android:background="@drawable/gradient"
     tools:context=".TelaPrincipalActivity">
 
 
@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:width="250dp"
         android:text="Adicionar Receita"
+        android:backgroundTint="#ffafcc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -29,6 +30,7 @@
         android:layout_height="wrap_content"
         android:width="250dp"
         android:text="Ver Receitas"
+        android:backgroundTint="#ffafcc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -42,6 +44,7 @@
         android:layout_height="wrap_content"
         android:width="250dp"
         android:text="Cadastrar Ingrediente"
+        android:backgroundTint="#ffafcc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -55,6 +58,7 @@
         android:layout_height="wrap_content"
         android:width="250dp"
         android:text="Listar Ingredientes"
+        android:backgroundTint="#ffafcc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -69,6 +73,7 @@
         android:layout_margin="10dp"
         android:width="250dp"
         android:text="Sair"
+        android:backgroundTint="#ffafcc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -82,6 +87,7 @@
         android:layout_height="124dp"
         android:text="Bem Vindo, "
         android:textAlignment="center"
+        android:textColor="#ffafcc"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
