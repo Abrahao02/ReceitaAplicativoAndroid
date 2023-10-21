@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#ffffff"
+    tools:context=".DetalhesReceitaActivity">
+
+    <TextView
+        android:id="@+id/txtNomeIngrediente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nome da Receita"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textViewDescricaoReceita"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Descrição da Receita"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/text_custoTotal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="R$:"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textViewIngredientes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ingredientes"
+        android:textSize="20sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewIngredientes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+
+</LinearLayout>

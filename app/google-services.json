@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "498418484629",
+    "project_id": "projetoreceita-58b5b",
+    "storage_bucket": "projetoreceita-58b5b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:498418484629:android:c04a91ea83ec924adba29c",
+        "android_client_info": {
+          "package_name": "com.example.receitaaplicativo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8P_UwW97tXjQqtTEZVIYUF_MsjLQR4Ac"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:498418484629:android:bafb2ead88c7075cdba29c",
+        "android_client_info": {
+          "package_name": "com.example.receitaprojetoaplicativo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8P_UwW97tXjQqtTEZVIYUF_MsjLQR4Ac"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
