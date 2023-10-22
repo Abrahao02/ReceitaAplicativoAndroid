@@ -39,7 +39,7 @@ public class TelaPrincipalActivity extends AppCompatActivity {
 
 
         nomeUsuario = getIntent().getStringExtra("nomeusuario");
-        TextView textViewNomeUsuario = findViewById(R.id.textView2);
+        TextView textViewNomeUsuario = findViewById(R.id.textView6);
 
         String nomeReceita = getIntent().getStringExtra("nomeReceita");
 
@@ -55,7 +55,7 @@ public class TelaPrincipalActivity extends AppCompatActivity {
 
 
         if (nomeUsuario != null) {
-            textViewNomeUsuario.setText("Bem Vindo, " + nomeUsuario);
+            textViewNomeUsuario.setText("Usuario: " + nomeUsuario);
         }
 
 

@@ -32,6 +32,7 @@
         <activity android:name=".DetalhesReceitaActivity" />
         <activity android:name=".ListarIngredientesActivity" />
         <activity android:name=".CadastroIngredienteActivity" />
+        <activity android:name=".EsqueciSenhaActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

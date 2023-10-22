@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -39,5 +40,17 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        TextView esqueciminhasenha = findViewById(R.id.txt_esqueciminhasenha);
+
+        esqueciminhasenha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Redirecionar para a tela de esqueci_senha (EsqueciSenhaActivity)
+                Intent intent = new Intent(MainActivity.this, EsqueciSenhaActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }
