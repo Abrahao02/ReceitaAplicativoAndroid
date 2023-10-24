@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     tools:context=".CadastroActivity">
 
     <TextView
@@ -11,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cadastro"
+        android:textColor="#ffafcc"
         android:textSize="55sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,7 +27,10 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:hint="Email"
+        android:textColorHint="#FFFFFF"
+        android:textColor="#FFFFFF"
         android:minHeight="48dp"
+        android:backgroundTint="#ffafcc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -41,6 +46,8 @@
         android:layout_margin="15dp"
         android:backgroundTint="#ffafcc"
         android:hint="Confirme a senha"
+        android:textColorHint="#FFFFFF"
+        android:textColor="#FFFFFF"
         android:minHeight="48dp"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -55,7 +62,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
+        android:backgroundTint="#ffafcc"
         android:hint="Senha"
+        android:textColorHint="#FFFFFF"
+        android:textColor="#FFFFFF"
         android:minHeight="48dp"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -71,6 +81,7 @@
         android:layout_height="wrap_content"
         android:width="300dp"
         android:text="Cadastrar"
+        android:backgroundTint="#ffafcc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -88,6 +99,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.499"
+        app:tint="#ffafcc"
         app:srcCompat="@drawable/baseline_check_box_outline_blank_24" />
 
     <ImageView
@@ -100,6 +112,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.595"
+        app:tint="#ffafcc"
         app:srcCompat="@drawable/baseline_check_box_outline_blank_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

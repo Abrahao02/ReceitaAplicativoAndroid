@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -71,8 +72,12 @@ public class AdicionarReceitaActivity extends AppCompatActivity {
 
                 if (nomeReceita.isEmpty()) {
                     Toast.makeText(AdicionarReceitaActivity.this, "Digite um nome para a receita", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(v, "Digite um nome para a receita", Snackbar.LENGTH_SHORT).show();
+
                 } else if (nomeIngrediente.isEmpty() || precoIngredienteText.isEmpty() || quantidadeIngredienteText.isEmpty() || quantidadeUtilizadaText.isEmpty()) {
-                    Toast.makeText(AdicionarReceitaActivity.this, "Preencha todos os campos do ingrediente", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AdicionarReceitaActivity.this, "", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(v, "Preencha todos os campos do ingrediente", Snackbar.LENGTH_SHORT).show();
+
                 } else {
                     double precoIngrediente = Double.parseDouble(precoIngredienteText);
                     double quantidadeIngrediente = Double.parseDouble(quantidadeIngredienteText);
@@ -96,7 +101,7 @@ public class AdicionarReceitaActivity extends AppCompatActivity {
                                         .addOnCompleteListener(task -> {
                                             if (task.isSuccessful() && !task.getResult().isEmpty()) {
                                                 // Ingrediente já existe na receita
-                                                Toast.makeText(AdicionarReceitaActivity.this, "Este ingrediente já está na receita.", Toast.LENGTH_SHORT).show();
+                                                Snackbar.make(v, "Este ingrediente já está na receita, vocé pode edita-lo.", Snackbar.LENGTH_SHORT).show();
                                             } else {
                                                 // Ingrediente não existe na receita, podemos adicioná-lo
 
@@ -112,25 +117,25 @@ public class AdicionarReceitaActivity extends AppCompatActivity {
 
                                                 // Adicionar o documento do ingrediente ao Firestore
                                                 novoIngredienteRef.set(ingredienteData).addOnSuccessListener(aVoid -> {
-                                                    Toast.makeText(AdicionarReceitaActivity.this, "Ingrediente adicionado à receita com sucesso", Toast.LENGTH_SHORT).show();
+                                                    Snackbar.make(v, "Ingrediente adicionado à receita com sucesso", Snackbar.LENGTH_SHORT).show();
                                                     // Limpe os campos de texto para o próximo ingrediente
                                                     editTextNomeIngrediente.setText("");
                                                     editTextPrecoIngrediente.setText("");
                                                     editTextQuantidadeIngrediente.setText("");
                                                     editTextQuantidadeIngredienteUtilizado.setText("");
                                                 }).addOnFailureListener(e -> {
-                                                    Toast.makeText(AdicionarReceitaActivity.this, "Erro ao adicionar o ingrediente à receita", Toast.LENGTH_SHORT).show();
+                                                    Snackbar.make(v, "Erro ao adicionar o ingrediente à receita", Snackbar.LENGTH_SHORT).show();
                                                 });
                                             }
                                         });
                             } else {
                                 // Receita não encontrada no documento do usuário
-                                Toast.makeText(AdicionarReceitaActivity.this, "Receita não encontrada, crie a receita primeiro", Toast.LENGTH_SHORT).show();
+                                Snackbar.make(v, "Receita não encontrada, crie a receita primeiro", Snackbar.LENGTH_SHORT).show();
                             }
                         });
                     } else {
                         // Usuário não está autenticado
-                        Toast.makeText(AdicionarReceitaActivity.this, "Usuário não autenticado, faça login primeiro", Toast.LENGTH_SHORT).show();
+                        Snackbar.make(v, "Usuário não autenticado, faça login primeiro", Snackbar.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -147,9 +152,9 @@ public class AdicionarReceitaActivity extends AppCompatActivity {
                 String quantidadeUtilizadaText = editTextQuantidadeIngredienteUtilizado.getText().toString();
 
                 if (nomeReceita.isEmpty()) {
-                    Toast.makeText(AdicionarReceitaActivity.this, "Digite um nome para a receita", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(v, "Digite um nome para a receita", Snackbar.LENGTH_SHORT).show();
                 } else if (nomeIngrediente.isEmpty() || precoIngredienteText.isEmpty() || quantidadeIngredienteText.isEmpty() || quantidadeUtilizadaText.isEmpty()) {
-                    Toast.makeText(AdicionarReceitaActivity.this, "Preencha todos os campos do ingrediente", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(v, "Preencha todos os campos do ingrediente", Snackbar.LENGTH_SHORT).show();
                 } else {
                     double precoIngrediente = Double.parseDouble(precoIngredienteText);
                     double quantidadeIngrediente = Double.parseDouble(quantidadeIngredienteText);
@@ -185,7 +190,7 @@ public class AdicionarReceitaActivity extends AppCompatActivity {
                                                 // Atualize o documento do ingrediente
                                                 ingredienteSnapshot.getReference().update(updatedData)
                                                         .addOnSuccessListener(aVoid -> {
-                                                            Toast.makeText(AdicionarReceitaActivity.this, "Ingrediente editado com sucesso", Toast.LENGTH_SHORT).show();
+                                                            Snackbar.make(v, "Ingrediente editado com sucesso", Snackbar.LENGTH_SHORT).show();
                                                             // Limpe os campos de texto para o próximo ingrediente
                                                             editTextNomeIngrediente.setText("");
                                                             editTextPrecoIngrediente.setText("");
@@ -193,109 +198,26 @@ public class AdicionarReceitaActivity extends AppCompatActivity {
                                                             editTextQuantidadeIngredienteUtilizado.setText("");
                                                         })
                                                         .addOnFailureListener(e -> {
-                                                            Toast.makeText(AdicionarReceitaActivity.this, "Erro ao editar o ingrediente", Toast.LENGTH_SHORT).show();
+                                                            Snackbar.make(v, "Erro ao editar o ingrediente", Snackbar.LENGTH_SHORT).show();
                                                         });
                                             } else {
                                                 // Ingrediente não encontrado na receita
-                                                Toast.makeText(AdicionarReceitaActivity.this, "Este ingrediente não está na receita.", Toast.LENGTH_SHORT).show();
+                                                Snackbar.make(v, "Este ingrediente já está na receita, vocé pode adiciona-lo.", Snackbar.LENGTH_SHORT).show();
+                                                Toast.makeText(AdicionarReceitaActivity.this, "", Toast.LENGTH_SHORT).show();
                                             }
                                         });
                             } else {
                                 // Receita não encontrada no documento do usuário
-                                Toast.makeText(AdicionarReceitaActivity.this, "Receita não encontrada, crie a receita primeiro", Toast.LENGTH_SHORT).show();
+                                Snackbar.make(v, "Receita não encontrada, crie a receita primeiro", Snackbar.LENGTH_SHORT).show();
                             }
                         });
                     } else {
                         // Usuário não está autenticado
-                        Toast.makeText(AdicionarReceitaActivity.this, "Usuário não autenticado, faça login primeiro", Toast.LENGTH_SHORT).show();
+                        Snackbar.make(v, "Usuário não autenticado, faça login primeiro", Snackbar.LENGTH_SHORT).show();
                     }
                 }
             }
         });
-
-        btnEditarIngrediente.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final String nomeReceita = editTextNomeReceita.getText().toString();
-                String nomeIngrediente = editTextNomeIngrediente.getText().toString();
-                String precoIngredienteText = editTextPrecoIngrediente.getText().toString();
-                String quantidadeIngredienteText = editTextQuantidadeIngrediente.getText().toString();
-                String quantidadeUtilizadaText = editTextQuantidadeIngredienteUtilizado.getText().toString();
-
-                if (nomeReceita.isEmpty() || nomeIngrediente.isEmpty()) {
-                    Toast.makeText(AdicionarReceitaActivity.this, "Nome da receita e nome do ingrediente são obrigatórios", Toast.LENGTH_SHORT).show();
-                } else if (precoIngredienteText.isEmpty() || quantidadeIngredienteText.isEmpty() || quantidadeUtilizadaText.isEmpty()) {
-                    Toast.makeText(AdicionarReceitaActivity.this, "Preencha todos os campos do ingrediente", Toast.LENGTH_SHORT).show();
-                } else {
-                    double precoIngrediente = Double.parseDouble(precoIngredienteText);
-                    double quantidadeIngrediente = Double.parseDouble(quantidadeIngredienteText);
-                    double quantidadeUtilizada = Double.parseDouble(quantidadeUtilizadaText);
-
-                    // Verifique se a receita já existe no documento do usuário
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    if (user != null) {
-                        String userId = user.getUid();
-                        DocumentReference userRef = db.collection("Usuarios").document(userId);
-                        DocumentReference receitaRef = userRef.collection("MinhaReceita").document(nomeReceita);
-
-                        receitaRef.get().addOnSuccessListener(documentSnapshot -> {
-                            if (documentSnapshot.exists()) {
-                                // Receita já existe no documento do usuário
-                                // Verifique se o ingrediente já existe na coleção 'ingredientes'
-                                CollectionReference ingredientesCollection = receitaRef.collection("ingredientes");
-
-                                ingredientesCollection.whereEqualTo("nomeIngrediente", nomeIngrediente)
-                                        .get()
-                                        .addOnCompleteListener(task -> {
-                                            if (task.isSuccessful() && !task.getResult().isEmpty()) {
-                                                // Ingrediente já existe na receita
-                                                // Execute a lógica de edição do ingrediente
-                                                DocumentSnapshot ingredienteSnapshot = task.getResult().getDocuments().get(0);
-
-                                                // Atualize os campos do ingrediente
-                                                Map<String, Object> updatedData = new HashMap<>();
-                                                updatedData.put("preco", precoIngrediente);
-                                                updatedData.put("quantidade", quantidadeIngrediente);
-                                                updatedData.put("quantidadeUtilizada", quantidadeUtilizada);
-
-                                                // Atualize o documento do ingrediente
-                                                ingredienteSnapshot.getReference().update(updatedData)
-                                                        .addOnSuccessListener(aVoid -> {
-                                                            Toast.makeText(AdicionarReceitaActivity.this, "Ingrediente editado com sucesso", Toast.LENGTH_SHORT).show();
-                                                            // Limpe os campos de texto para o próximo ingrediente
-                                                            editTextNomeIngrediente.setText("");
-                                                            editTextPrecoIngrediente.setText("");
-                                                            editTextQuantidadeIngrediente.setText("");
-                                                            editTextQuantidadeIngredienteUtilizado.setText("");
-                                                        })
-                                                        .addOnFailureListener(e -> {
-                                                            Toast.makeText(AdicionarReceitaActivity.this, "Erro ao editar o ingrediente", Toast.LENGTH_SHORT).show();
-                                                        });
-                                            } else {
-                                                // Ingrediente não encontrado na receita
-                                                Toast.makeText(AdicionarReceitaActivity.this, "Este ingrediente não está na receita.", Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
-                            } else {
-                                // Receita não encontrada no documento do usuário
-                                Toast.makeText(AdicionarReceitaActivity.this, "Receita não encontrada, crie a receita primeiro", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    } else {
-                        // Usuário não está autenticado
-                        Toast.makeText(AdicionarReceitaActivity.this, "Usuário não autenticado, faça login primeiro", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-        });
-
-
-
-
-
-
-
-
 
         btnConcluirReceita.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -303,7 +225,7 @@ public class AdicionarReceitaActivity extends AppCompatActivity {
                 final String nomeReceita = editTextNomeReceita.getText().toString().trim();
 
                 if (nomeReceita.isEmpty()) {
-                    Toast.makeText(AdicionarReceitaActivity.this, "Digite um nome para a receita", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(v, "Digite um nome para a receita", Snackbar.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -320,7 +242,7 @@ public class AdicionarReceitaActivity extends AppCompatActivity {
                     receitaRef.get().addOnSuccessListener(documentSnapshot -> {
                         if (documentSnapshot.exists()) {
                             // A receita já existe no documento do usuário
-                            Toast.makeText(AdicionarReceitaActivity.this, "Essa Receita já existe, favor usar adicionar ingrediente.", Toast.LENGTH_SHORT).show();
+                            Snackbar.make(v, "Essa Receita já existe, vocé pode usar o adicionar ingredientes agora.", Snackbar.LENGTH_SHORT).show();
                         } else {
                             // A receita não existe no documento do usuário, então podemos criar a receita
                             Map<String, Object> novaReceita = new HashMap<>();
@@ -328,16 +250,16 @@ public class AdicionarReceitaActivity extends AppCompatActivity {
 
                             userRef.collection("MinhaReceita").document(nomeReceita).set(novaReceita)
                                     .addOnSuccessListener(aVoid -> {
-                                        Toast.makeText(AdicionarReceitaActivity.this, "Receita adicionada com sucesso", Toast.LENGTH_SHORT).show();
+                                        Snackbar.make(v, "Receita adicionada com sucesso", Snackbar.LENGTH_SHORT).show();
                                     })
                                     .addOnFailureListener(e -> {
-                                        Toast.makeText(AdicionarReceitaActivity.this, "Erro ao adicionar a receita", Toast.LENGTH_SHORT).show();
+                                        Snackbar.make(v, "Erro ao adicionar a receita", Snackbar.LENGTH_SHORT).show();
                                     });
                         }
                     });
                 } else {
                     // Usuário não está autenticado
-                    Toast.makeText(AdicionarReceitaActivity.this, "Usuário não autenticado, faça login primeiro", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(v, "Usuário não autenticado, faça login primeiro", Snackbar.LENGTH_SHORT).show();
                 }
             }
         });

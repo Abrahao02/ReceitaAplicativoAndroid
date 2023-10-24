@@ -67,7 +67,7 @@ public class DetalhesReceitaActivity extends AppCompatActivity {
             textViewDescricaoReceita.setText(descricaoReceita);
         } else {
             // Caso a descrição seja nula, defina um texto padrão ou uma mensagem alternativa
-            textViewDescricaoReceita.setText("Descrição não disponível");
+            textViewDescricaoReceita.setText("Descrição não criada ainda");
         }
 
 
