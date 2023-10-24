@@ -14,8 +14,9 @@ import java.util.List;
 public class ReceitaAdapter extends RecyclerView.Adapter<ReceitaAdapter.ReceitaViewHolder> {
 
     private List<Receita> receitas;
-    private OnItemClickListener onItemClickListener; // Adicionado o OnItemClickListener
+    Receita minhaReceita = new Receita("Nome da Receita", "Descrição da Receita");
 
+    private OnItemClickListener onItemClickListener; // Adicionado o OnItemClickListener
 
     @NonNull
     @Override
@@ -36,7 +37,7 @@ public class ReceitaAdapter extends RecyclerView.Adapter<ReceitaAdapter.ReceitaV
             @Override
             public void onClick(View v) {
                 if (onItemClickListener != null) {
-                    onItemClickListener.onItemClick(receita);
+                    onItemClickListener.onItemClick(receita, receita.getDescricaoReceita());
                 }
             }
         });
@@ -51,20 +52,19 @@ public class ReceitaAdapter extends RecyclerView.Adapter<ReceitaAdapter.ReceitaV
         this.onItemClickListener = listener;
     }
 
-    public void setNomesDeReceitas(List<String> nomesDeReceitas) {
+    public void setNomesEDescricoesDeReceitas(List<String> nomesDeReceitas, List<String> descricoesDeReceitas) {
         List<Receita> receitas = new ArrayList<>();
-        for (String nomeReceita : nomesDeReceitas) {
-            Log.d("ReceitaApp", "Criado objeto Receita com nome: " + nomeReceita);
-            Receita receita = new Receita(nomeReceita);
+        for (int i = 0; i < nomesDeReceitas.size(); i++) {
+            String nomeReceita = nomesDeReceitas.get(i);
+            String descricaoReceita = descricoesDeReceitas.get(i);
 
-            // Certifique-se de definir o nome da receita corretamente
-            receita.setNomeReceita(nomeReceita);
+            Log.d("ReceitaApp", "Criado objeto Receita com nome: " + nomeReceita + " e descrição: " + descricaoReceita);
+            Receita receita = new Receita(nomeReceita, descricaoReceita);
 
             receitas.add(receita);
         }
         setReceitas(receitas);
     }
-
 
 
     public ReceitaAdapter() {
@@ -82,10 +82,9 @@ public class ReceitaAdapter extends RecyclerView.Adapter<ReceitaAdapter.ReceitaV
         }
     }
 
-
     // Interface OnItemClickListener
     public interface OnItemClickListener {
-        void onItemClick(Receita receita);
+        void onItemClick(Receita receita, String descricaoReceita);
     }
 
     public class ReceitaViewHolder extends RecyclerView.ViewHolder {
@@ -103,6 +102,5 @@ public class ReceitaAdapter extends RecyclerView.Adapter<ReceitaAdapter.ReceitaV
             // Adicione este log para verificar o nome da receita definido no TextView
             Log.d("ReceitaApp", "Nome da receita no ViewHolder: " + receita.getNomeReceita());
         }
-
     }
 }

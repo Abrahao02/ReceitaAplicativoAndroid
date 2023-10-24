@@ -5,7 +5,13 @@ import java.util.ArrayList;
 
 public class Receita implements Serializable {
     private String nomeReceita;
+    private String descricaoReceita;
     private ArrayList<Ingrediente> ingredientes = new ArrayList<>();
+
+    public Receita(String nomeReceita, String descricaoReceita) {
+        this.nomeReceita = nomeReceita;
+        this.descricaoReceita = descricaoReceita;
+    }
 
     public Receita(String nomeReceita) {
         this.nomeReceita = nomeReceita;
@@ -32,6 +38,14 @@ public class Receita implements Serializable {
 
     public void setNomeReceita(String nomeReceita) {
         this.nomeReceita = nomeReceita;
+    }
+
+    public String getDescricaoReceita() {
+        return descricaoReceita;
+    }
+
+    public void setDescricaoReceita(String descricaoReceita) {
+        this.descricaoReceita = descricaoReceita;
     }
 }
 

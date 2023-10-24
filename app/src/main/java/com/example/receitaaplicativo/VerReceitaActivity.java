@@ -2,27 +2,11 @@ package com.example.receitaaplicativo;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
 import android.util.Log;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import java.util.ArrayList;
+
 import java.util.List;
 
 public class VerReceitaActivity extends AppCompatActivity {
@@ -50,33 +34,45 @@ public class VerReceitaActivity extends AppCompatActivity {
 
         // Configure um ouvinte de clique para os itens do RecyclerView
         receitaAdapter.setOnItemClickListener(new ReceitaAdapter.OnItemClickListener() {
-            public void onItemClick(Receita receita) {
+            public void onItemClick(Receita receita, String descricaoReceita) {
                 // Quando um nome de receita é clicado, abra a atividade "Detalhes da Receita"
                 Intent intent = new Intent(VerReceitaActivity.this, DetalhesReceitaActivity.class);
                 intent.putExtra("nomeReceita", receita.getNomeReceita());
+                intent.putExtra("descricaoReceita", descricaoReceita);
                 startActivity(intent);
             }
         });
 
         // Inicialize a classe de carregamento de receitas
         carregadorDeReceitas = new MinhaClasseDeCarregamentoDeReceitas();
+        carregarDadosDoFirebase();
+    }
 
-        carregadorDeReceitas.obterNomesDeReceitas(new MinhaClasseDeCarregamentoDeReceitas.NomesDeReceitasCallback() {
-            public void onNomesDeReceitasCarregados(List<String> nomesDeReceitas) {
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Recarregue os dados do RecyclerView quando a atividade for retomada
+        carregarDadosDoFirebase();
+    }
+
+    private void carregarDadosDoFirebase() {
+        carregadorDeReceitas.obterNomesEDescricaoDeReceitas(new MinhaClasseDeCarregamentoDeReceitas.onNomesEDescricaoDeReceitasCarregados() {
+            public void onNomesEDescricaoDeReceitasCarregados(List<String> nomesDeReceitas, List<String> descricoesDeReceitas) {
                 Log.d("ReceitaApp", "Nomes de receitas carregados. Quantidade de nomes de receitas: " + nomesDeReceitas.size());
 
                 // Adicione este log para verificar os nomes das receitas
-                for (String nomeReceita : nomesDeReceitas) {
+                for (int i = 0; i < nomesDeReceitas.size(); i++) {
+                    String nomeReceita = nomesDeReceitas.get(i);
+                    String descricaoReceita = descricoesDeReceitas.get(i);
                     Log.d("ReceitaApp", "Nome de receita: " + nomeReceita);
+                    Log.d("ReceitaApp", "Descrição de receita: " + descricaoReceita);
                 }
 
                 // Atualize o adaptador com os nomes das receitas
-                receitaAdapter.setNomesDeReceitas(nomesDeReceitas);
+                receitaAdapter.setNomesEDescricoesDeReceitas(nomesDeReceitas, descricoesDeReceitas);
                 recyclerView.setAdapter(receitaAdapter);
             }
         });
-
-
     }
 }
-

@@ -15,8 +15,9 @@ import java.util.List;
 public class MinhaClasseDeCarregamentoDeReceitas {
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    public void obterNomesDeReceitas(NomesDeReceitasCallback callback) {
+    public void obterNomesEDescricaoDeReceitas(onNomesEDescricaoDeReceitasCarregados callback) {
         List<String> nomesDeReceitas = new ArrayList<>();
+        List<String> descricoesDeReceitas = new ArrayList<>();
         CollectionReference usuariosRef = db.collection("Usuarios");
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -30,21 +31,25 @@ public class MinhaClasseDeCarregamentoDeReceitas {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 String nomeReceita = document.getString("nomeReceita");
+                                String descricaoReceita = document.getString("descricaoReceita");
                                 nomesDeReceitas.add(nomeReceita);
+                                descricoesDeReceitas.add(descricaoReceita);
                             }
 
-                            callback.onNomesDeReceitasCarregados(nomesDeReceitas);
+                            callback.onNomesEDescricaoDeReceitasCarregados(nomesDeReceitas, descricoesDeReceitas);
                         } else {
                             // Lidar com erros ao buscar dados do Firestore
-                            Log.e("ReceitaApp", "Erro ao obter nomes de receitas: " + task.getException());
+                            Log.e("ReceitaApp", "Erro ao obter nomes e descrições de receitas: " + task.getException());
                         }
                     });
         }
     }
 
-    public interface NomesDeReceitasCallback {
-        void onNomesDeReceitasCarregados(List<String> nomesDeReceitas);
+
+    public interface onNomesEDescricaoDeReceitasCarregados {
+        void onNomesEDescricaoDeReceitasCarregados(List<String> nomesDeReceitas, List<String> descricoesDeReceitas);
     }
+
 
 
     public void obterReceitas(ReceitasCallback callback) {
@@ -63,7 +68,9 @@ public class MinhaClasseDeCarregamentoDeReceitas {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 String nomeReceita = document.getString("nomeReceita");
-                                listaDeReceitas.add(new Receita(nomeReceita));
+                                String descricaoReceita = document.getString("descricaoReceita"); // Busque a descrição da receita
+                                Receita receita = new Receita(nomeReceita, descricaoReceita); // Crie uma instância de Receita com nome e descrição
+                                listaDeReceitas.add(receita);
                             }
 
                             Log.d("ReceitaApp", "Receitas carregadas. Quantidade de receitas: " + listaDeReceitas.size());
@@ -76,7 +83,6 @@ public class MinhaClasseDeCarregamentoDeReceitas {
                     });
         }
     }
-
     public interface ReceitasCallback {
         void onReceitasCarregadas(List<Receita> receitas);
     }
