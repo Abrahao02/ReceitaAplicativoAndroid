@@ -2,9 +2,12 @@ package com.example.receitaaplicativo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +33,25 @@ public class LoginActivity extends AppCompatActivity {
         editTextLoginUsername = findViewById(R.id.txt_emaillogin);
         editTextLoginPassword = findViewById(R.id.txt_senhalogin2);
         buttonLogin = findViewById(R.id.buttonLogin);
+
+        ImageView imageViewMostrarSenhaLogin = findViewById(R.id.imageViewMostrarSenhaLogin);
+
+        imageViewMostrarSenhaLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Alterna a visibilidade do campo de senha
+                if (editTextLoginPassword.getTransformationMethod() == PasswordTransformationMethod.getInstance()) {
+                    editTextLoginPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    imageViewMostrarSenhaLogin.setImageResource(R.drawable.baseline_check_box_24);
+                } else {
+                    editTextLoginPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    imageViewMostrarSenhaLogin.setImageResource(R.drawable.baseline_check_box_outline_blank_24);
+                }
+
+                // Move o cursor para o final do texto
+                editTextLoginPassword.setSelection(editTextLoginPassword.getText().length());
+            }
+        });
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
