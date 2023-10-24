@@ -6,12 +6,20 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <TextView
-        android:id="@+id/txtNomeReceita"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold" />
+        android:background="@drawable/border_background"
+        android:padding="8dp">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/txtNomeReceita"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#ffafcc"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </FrameLayout>
+
+
+    </LinearLayout>
