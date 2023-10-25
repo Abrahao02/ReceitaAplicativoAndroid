@@ -104,8 +104,12 @@ public class DetalhesReceitaActivity extends AppCompatActivity {
                 ingredienteAdapter.setEditing(isEditing); // Atualizar o estado de edição no adaptador
                 ingredienteAdapter.notifyDataSetChanged();// Notificar o adaptador de que os dados foram alterados
 
+                // Preencha os campos de edição com os valores atuais
+                editTextNomeReceita.setText(nomeReceita);
+                editTextDescricaoReceita.setText(descricaoReceita != null ? descricaoReceita : "Descrição não criada ainda");
             }
         });
+
 
         // Defina um ouvinte para o botão "Salvar"
         btnSalvar.setOnClickListener(new View.OnClickListener() {
@@ -185,9 +189,13 @@ public class DetalhesReceitaActivity extends AppCompatActivity {
         String novaDescricaoReceita = editTextDescricaoReceita.getText().toString();
 
         // Verifique se o novo nome da receita já existe
-        receitaJaExiste(novoNomeReceita, novaDescricaoReceita);
+        if (!novoNomeReceita.equals(nomeReceita)) {
+            receitaJaExiste(novoNomeReceita, novaDescricaoReceita);
+        } else {
+            // Nome da receita não foi alterado, atualize apenas a descrição
+            atualizarDescricaoReceita(nomeReceita, novaDescricaoReceita);
+        }
     }
-
     private void atualizarReceita(String novoNomeReceita, String novaDescricaoReceita) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
@@ -276,6 +284,68 @@ public class DetalhesReceitaActivity extends AppCompatActivity {
             });
         }
     }
+
+    private void atualizarDescricaoReceita(String nomeReceita, String novaDescricaoReceita) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+            // Obtenha uma referência para a coleção "MinhaReceita"
+            CollectionReference receitaCollection = db.collection("Usuarios")
+                    .document(userId)
+                    .collection("MinhaReceita");
+
+            // Execute uma consulta para encontrar o documento com base no campo "nomeReceita"
+            Query query = receitaCollection.whereEqualTo("nomeReceita", nomeReceita);
+
+            query.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    QuerySnapshot querySnapshot = task.getResult();
+                    if (querySnapshot != null && !querySnapshot.isEmpty()) {
+                        // Encontramos um documento correspondente
+                        DocumentSnapshot documentSnapshot = querySnapshot.getDocuments().get(0);
+
+                        // Crie um mapa com a nova descrição
+                        Map<String, Object> newRecipeData = new HashMap<>();
+                        newRecipeData.put("descricaoReceita", novaDescricaoReceita);
+
+                        // Atualize o documento existente com a nova descrição
+                        documentSnapshot.getReference().update(newRecipeData)
+                                .addOnSuccessListener(aVoid -> {
+                                    // Sucesso ao atualizar o documento com a nova descrição
+
+                                    Toast.makeText(DetalhesReceitaActivity.this, "Descrição da receita atualizada com sucesso.", Toast.LENGTH_SHORT).show();
+
+                                    Intent intent = new Intent();
+                                    intent.putExtra("descricaoReceita", novaDescricaoReceita);
+                                    setResult(RESULT_OK, intent);
+                                    finish();
+
+                                    // Atualize a descrição da receita localmente
+                                    descricaoReceita = novaDescricaoReceita;
+
+                                    // Atualize o TextView com a nova descrição
+                                    textViewDescricaoReceita.setText(descricaoReceita);
+
+                                    // Desabilite a edição
+                                    habilitarEdicao(false);
+                                })
+                                .addOnFailureListener(e -> {
+                                    // Lidar com erros na atualização da descrição
+                                    Toast.makeText(DetalhesReceitaActivity.this, "Erro ao atualizar a descrição da receita.", Toast.LENGTH_SHORT).show();
+                                });
+                    } else {
+                        // Não encontramos um documento correspondente
+                        Toast.makeText(DetalhesReceitaActivity.this, "Receita não encontrada.", Toast.LENGTH_SHORT).show();
+                        Log.d("DEBUG", "Nome da receita na consulta: " + nomeReceita);
+                    }
+                } else {
+                    // Lidar com erros na consulta
+                    Toast.makeText(DetalhesReceitaActivity.this, "Erro ao consultar a receita.", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+
 
 
 

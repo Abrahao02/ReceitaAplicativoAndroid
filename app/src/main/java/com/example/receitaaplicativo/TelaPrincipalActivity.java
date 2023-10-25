@@ -49,8 +49,6 @@ public class TelaPrincipalActivity extends AppCompatActivity {
         // Inicialize os botões com base nos IDs definidos no XML
         btnAdicionarReceita = findViewById(R.id.btnAdicionarReceita);
         btnVerReceitas = findViewById(R.id.btnVerReceitas);
-        btnCadastrarIngrediente = findViewById(R.id.btnCadastrarIngrediente);
-        btnListarIngredientes = findViewById(R.id.btnListarIngredientes);
         btnLogout = findViewById(R.id.btnLogout);
 
 
