@@ -79,23 +79,23 @@ public class TelaPrincipalActivity extends AppCompatActivity {
         });
 
 
-        btnCadastrarIngrediente.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Lógica para ação do botão "Cadastrar Ingrediente"
-                Intent intent = new Intent(TelaPrincipalActivity.this, CadastroIngredienteActivity.class);
-                startActivity(intent);
-            }
-        });
+//        btnCadastrarIngrediente.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // Lógica para ação do botão "Cadastrar Ingrediente"
+//                Intent intent = new Intent(TelaPrincipalActivity.this, CadastroIngredienteActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
-        btnListarIngredientes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Lógica para ação do botão "Listar Ingredientes Cadastrados"
-                Intent intent = new Intent(TelaPrincipalActivity.this, ListarIngredientesActivity.class);
-                startActivity(intent);
-            }
-        });
+//        btnListarIngredientes.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // Lógica para ação do botão "Listar Ingredientes Cadastrados"
+//                Intent intent = new Intent(TelaPrincipalActivity.this, ListarIngredientesActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override

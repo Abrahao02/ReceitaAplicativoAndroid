@@ -41,10 +41,9 @@ public class DetalhesReceitaActivity extends AppCompatActivity {
     private EditText editTextDescricaoReceita;
     private Button btnEditar;
     private Button btnSalvar;
-
+    private boolean isEditing = false;
     private String nomeReceita;
     private String descricaoReceita;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +69,6 @@ public class DetalhesReceitaActivity extends AppCompatActivity {
             textViewDescricaoReceita.setText("Descrição não criada ainda");
         }
 
-
         // Defina o nome da receita na TextView
         textViewNomeReceita.setText(nomeReceita);
 
@@ -81,7 +79,8 @@ public class DetalhesReceitaActivity extends AppCompatActivity {
         ingredientesList = new ArrayList<>();
 
         // Passe a lista de ingredientes para o construtor do adaptador
-        ingredienteAdapter = new IngredienteAdapter(ingredientesList);
+        ingredienteAdapter = new IngredienteAdapter(ingredientesList, isEditing, nomeReceita);
+
 
         recyclerViewIngredientes.setAdapter(ingredienteAdapter);
 
@@ -95,11 +94,16 @@ public class DetalhesReceitaActivity extends AppCompatActivity {
         // Obtenha os ingredientes da receita a partir do Firestore
         obterIngredientesDaReceita(nomeReceita);
 
+
         // Defina um ouvinte para o botão "Editar"
         btnEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                habilitarEdicao(true);
+                isEditing = !isEditing; // Alternar o estado de edição
+                habilitarEdicao(isEditing); // Habilitar ou desabilitar a edição
+                ingredienteAdapter.setEditing(isEditing); // Atualizar o estado de edição no adaptador
+                ingredienteAdapter.notifyDataSetChanged();// Notificar o adaptador de que os dados foram alterados
+
             }
         });
 
@@ -107,8 +111,10 @@ public class DetalhesReceitaActivity extends AppCompatActivity {
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isEditing = false;
+                ingredienteAdapter.setEditing(isEditing);
+                ingredienteAdapter.notifyDataSetChanged();
                 tentarSalvarEdicoes();
-
             }
         });
 
@@ -305,6 +311,7 @@ public class DetalhesReceitaActivity extends AppCompatActivity {
             Toast.makeText(DetalhesReceitaActivity.this, "O usuário não está autenticado.", Toast.LENGTH_SHORT).show();
         }
     }
+
 
     private double calcularCustoTotal(List<Ingrediente> ingredientes) {
         double custoTotal = 0;

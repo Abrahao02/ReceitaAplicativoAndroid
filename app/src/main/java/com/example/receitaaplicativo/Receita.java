@@ -57,9 +57,11 @@ class Ingrediente implements Serializable {
 
 
 
+
     public Ingrediente() {
         // Construtor padrão vazio necessário para desserialização pelo Firebase
     }
+
 
     public void editarIngrediente(String novoNome, double novoPreco, double novaQuantidade) {
         this.nome = novoNome;
