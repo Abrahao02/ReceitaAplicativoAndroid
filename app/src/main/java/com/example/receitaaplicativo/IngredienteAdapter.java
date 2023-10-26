@@ -123,7 +123,6 @@ public class IngredienteAdapter extends RecyclerView.Adapter<IngredienteAdapter.
         }
     }
 
-
     @Override
     public int getItemCount() {
         return ingredientesList.size();

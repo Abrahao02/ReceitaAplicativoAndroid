@@ -38,8 +38,6 @@ public class CadastroActivity extends AppCompatActivity {
         editTextConfirmPassword = findViewById(R.id.txt_confirm_password);
         btnCadastro = findViewById(R.id.btnCadastro);
 
-        // Adicione isso no método `onCreate` da sua `CadastroActivity` após inicializar os campos de senha.
-
         ImageView imageViewMostrarSenha = findViewById(R.id.imageViewMostrarSenha);
         ImageView imageViewMostrarConfirmarSenha = findViewById(R.id.imageViewMostrarConfirmarSenha);
 
@@ -54,7 +52,6 @@ public class CadastroActivity extends AppCompatActivity {
                     editTextPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
                     imageViewMostrarSenha.setImageResource(R.drawable.baseline_check_box_outline_blank_24);
                 }
-
                 // Move o cursor para o final do texto
                 editTextPassword.setSelection(editTextPassword.getText().length());
             }
@@ -71,12 +68,10 @@ public class CadastroActivity extends AppCompatActivity {
                     editTextConfirmPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
                     imageViewMostrarConfirmarSenha.setImageResource(R.drawable.baseline_check_box_outline_blank_24);
                 }
-
                 // Move o cursor para o final do texto
                 editTextConfirmPassword.setSelection(editTextConfirmPassword.getText().length());
             }
         });
-
 
         btnCadastro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,7 +101,7 @@ public class CadastroActivity extends AppCompatActivity {
                                                         }
                                                     });
 
-                                            // Você pode redirecionar para a tela principal ou fazer outras ações aqui.
+                                            // redirecionar para a tela principal aqui.
                                             Intent intent = new Intent(CadastroActivity.this, LoginActivity.class);
                                             startActivity(intent);
                                         } else {

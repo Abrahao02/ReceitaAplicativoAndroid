@@ -94,7 +94,6 @@ public class DetalhesReceitaActivity extends AppCompatActivity {
         // Obtenha os ingredientes da receita a partir do Firestore
         obterIngredientesDaReceita(nomeReceita);
 
-
         // Defina um ouvinte para o botão "Editar"
         btnEditar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,7 +108,6 @@ public class DetalhesReceitaActivity extends AppCompatActivity {
                 editTextDescricaoReceita.setText(descricaoReceita != null ? descricaoReceita : "Descrição não criada ainda");
             }
         });
-
 
         // Defina um ouvinte para o botão "Salvar"
         btnSalvar.setOnClickListener(new View.OnClickListener() {
@@ -196,6 +194,7 @@ public class DetalhesReceitaActivity extends AppCompatActivity {
             atualizarDescricaoReceita(nomeReceita, novaDescricaoReceita);
         }
     }
+
     private void atualizarReceita(String novoNomeReceita, String novaDescricaoReceita) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
@@ -346,9 +345,6 @@ public class DetalhesReceitaActivity extends AppCompatActivity {
         }
     }
 
-
-
-
     private void receitaJaExiste(String novoNomeReceita, String novaDescricaoReceita) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
@@ -381,7 +377,6 @@ public class DetalhesReceitaActivity extends AppCompatActivity {
             Toast.makeText(DetalhesReceitaActivity.this, "O usuário não está autenticado.", Toast.LENGTH_SHORT).show();
         }
     }
-
 
     private double calcularCustoTotal(List<Ingrediente> ingredientes) {
         double custoTotal = 0;

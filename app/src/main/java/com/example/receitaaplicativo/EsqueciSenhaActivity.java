@@ -21,7 +21,6 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_esqueci_senha);
 
-
         emailEditText = findViewById(R.id.txt_emaillogin);
         resetButton = findViewById(R.id.btn_resetemail);
 
@@ -56,5 +55,5 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
                         }
                     }
                 });
-    }
+        }
 }
