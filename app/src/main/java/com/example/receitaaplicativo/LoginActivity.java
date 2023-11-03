@@ -11,16 +11,19 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import android.content.SharedPreferences;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText editTextLoginUsername;
     private EditText editTextLoginPassword;
     private Button buttonLogin;
+    private ImageView imageViewKeepMeLoggedIn;
     private FirebaseAuth mAuth;
 
     @Override
@@ -33,25 +36,37 @@ public class LoginActivity extends AppCompatActivity {
         editTextLoginUsername = findViewById(R.id.txt_emaillogin);
         editTextLoginPassword = findViewById(R.id.txt_senhalogin2);
         buttonLogin = findViewById(R.id.buttonLogin);
+        imageViewKeepMeLoggedIn = findViewById(R.id.keepMeLoggedInCheckBox1);
 
-        ImageView imageViewMostrarSenhaLogin = findViewById(R.id.imageViewMostrarSenhaLogin);
-
-        imageViewMostrarSenhaLogin.setOnClickListener(new View.OnClickListener() {
+        imageViewKeepMeLoggedIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Alterna a visibilidade do campo de senha
-                if (editTextLoginPassword.getTransformationMethod() == PasswordTransformationMethod.getInstance()) {
-                    editTextLoginPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    imageViewMostrarSenhaLogin.setImageResource(R.drawable.baseline_check_box_24);
-                } else {
-                    editTextLoginPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                    imageViewMostrarSenhaLogin.setImageResource(R.drawable.baseline_check_box_outline_blank_24);
-                }
+                boolean keepMeLoggedIn = toggleKeepMeLoggedInState();
 
-                // Move o cursor para o final do texto
-                editTextLoginPassword.setSelection(editTextLoginPassword.getText().length());
+                if (keepMeLoggedIn) {
+                    imageViewKeepMeLoggedIn.setImageResource(R.drawable.baseline_check_box_24);
+                } else {
+                    imageViewKeepMeLoggedIn.setImageResource(R.drawable.baseline_check_box_outline_blank_24);
+                }
             }
         });
+
+        boolean keepMeLoggedIn = getKeepMeLoggedInState();
+        if (keepMeLoggedIn) {
+            imageViewKeepMeLoggedIn.setImageResource(R.drawable.baseline_check_box_24);
+        } else {
+            imageViewKeepMeLoggedIn.setImageResource(R.drawable.baseline_check_box_outline_blank_24);
+        }
+
+        // Verifica se o usuário já está autenticado
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            // Se o usuário já está conectado, redirecione para a TelaPrincipalActivity
+            Intent intent = new Intent(LoginActivity.this, TelaPrincipalActivity.class);
+            intent.putExtra("nomeusuario", currentUser.getEmail()); // Você pode passar o email ou outra informação do usuário
+            startActivity(intent);
+            finish(); // Encerre a LoginActivity para evitar que o usuário volte para ela com o botão "Voltar".
+        }
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,10 +81,10 @@ public class LoginActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         Toast.makeText(LoginActivity.this, "Login bem-sucedido!", Toast.LENGTH_SHORT).show();
-                                        // Redirecionar para a TelaPrincipalActivity ou executar outras ações aqui.
                                         Intent intent = new Intent(LoginActivity.this, TelaPrincipalActivity.class);
                                         intent.putExtra("nomeusuario", username);
                                         startActivity(intent);
+                                        finish();
                                     } else {
                                         Toast.makeText(LoginActivity.this, "Nome de usuário ou senha incorretos.", Toast.LENGTH_SHORT).show();
                                     }
@@ -80,5 +95,23 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+
+    private boolean toggleKeepMeLoggedInState() {
+        // Adicione a lógica para alternar o estado de "Mantenha-me conectado" no SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        boolean keepMeLoggedIn = sharedPreferences.getBoolean("keepMeLoggedIn", false);
+        keepMeLoggedIn = !keepMeLoggedIn;
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("keepMeLoggedIn", keepMeLoggedIn);
+        editor.apply();
+        return keepMeLoggedIn;
+    }
+
+    private boolean getKeepMeLoggedInState() {
+        // Obtenha o estado atual de "Mantenha-me conectado" do SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        return sharedPreferences.getBoolean("keepMeLoggedIn", false);
     }
 }

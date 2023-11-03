@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -76,29 +78,11 @@ public class TelaPrincipalActivity extends AppCompatActivity {
             }
         });
 
-
-//        btnCadastrarIngrediente.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Lógica para ação do botão "Cadastrar Ingrediente"
-//                Intent intent = new Intent(TelaPrincipalActivity.this, CadastroIngredienteActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-
-//        btnListarIngredientes.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Lógica para ação do botão "Listar Ingredientes Cadastrados"
-//                Intent intent = new Intent(TelaPrincipalActivity.this, ListarIngredientesActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Implemente o logout ou qualquer lógica necessária aqui.
+                // Faça logout do Firebase
+                FirebaseAuth.getInstance().signOut();
 
                 // Inicie a LoginActivity
                 Intent intent = new Intent(TelaPrincipalActivity.this, MainActivity.class);

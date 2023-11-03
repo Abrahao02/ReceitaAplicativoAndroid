@@ -1,6 +1,8 @@
 package com.example.receitaaplicativo;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -63,6 +65,71 @@ public class AdicionarReceitaActivity extends AppCompatActivity {
 
         // Configure o adaptador no Spinner
         spinnerUnidade.setAdapter(adapter);
+
+        // metodo de letra maiscula o código a seguir para as entradas de nome da receita e nome do ingrediente:
+        EditText editTextNomeReceita = findViewById(R.id.editTextNomeReceita);
+        EditText editTextNomeIngrediente = findViewById(R.id.editTextNomeIngrediente);
+
+        editTextNomeReceita.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // Não é necessário implementar nada aqui.
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // Converte a primeira letra em maiúscula e atualiza o EditText
+                if (charSequence.length() > 0) {
+                    String firstLetter = charSequence.subSequence(0, 1).toString().toUpperCase();
+                    String restOfText = charSequence.subSequence(1, charSequence.length()).toString().toLowerCase();
+
+                    // Remova o TextWatcher temporariamente
+                    editTextNomeReceita.removeTextChangedListener(this);
+
+                    editTextNomeReceita.setText(firstLetter + restOfText);
+                    editTextNomeReceita.setSelection(editTextNomeReceita.length());
+
+                    // Adicione o TextWatcher de volta
+                    editTextNomeReceita.addTextChangedListener(this);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                // Não é necessário implementar nada aqui.
+            }
+        });
+
+        editTextNomeIngrediente.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // Não é necessário implementar nada aqui.
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // Converte a primeira letra em maiúscula e atualiza o EditText
+                if (charSequence.length() > 0) {
+                    String firstLetter = charSequence.subSequence(0, 1).toString().toUpperCase();
+                    String restOfText = charSequence.subSequence(1, charSequence.length()).toString().toLowerCase();
+
+                    // Remova o TextWatcher temporariamente
+                    editTextNomeIngrediente.removeTextChangedListener(this);
+
+                    editTextNomeIngrediente.setText(firstLetter + restOfText);
+                    editTextNomeIngrediente.setSelection(editTextNomeIngrediente.length());
+
+                    // Adicione o TextWatcher de volta
+                    editTextNomeIngrediente.addTextChangedListener(this);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                // Não é necessário implementar nada aqui.
+            }
+        });
+
 
         btnAdicionarIngrediente.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -13,10 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -32,20 +34,21 @@
                 android:textColorHint="#FFFFFF"
                 android:textSize="24sp"
                 android:visibility="gone"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/txtNomeIngrediente"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Nome da Receita"
+                android:textAlignment="center"
                 android:textColor="#FFFFFF"
-                android:textSize="24sp"
-                app:layout_constraintTop_toBottomOf="@+id/editTextNomeReceita"
+                android:textSize="34sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/editTextNomeReceita" />
 
             <EditText
                 android:id="@+id/editTextDescricaoReceita"
@@ -57,62 +60,81 @@
                 android:textColorHint="#FFFFFF"
                 android:textSize="16sp"
                 android:visibility="gone"
-                app:layout_constraintTop_toBottomOf="@+id/txtNomeIngrediente"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/txtNomeIngrediente" />
 
             <TextView
                 android:id="@+id/txtDescricaoReceita"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Descrição da Receita"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="4dp"
                 android:textColor="#FFFFFF"
-                android:textSize="16sp"
-                app:layout_constraintTop_toBottomOf="@+id/editTextDescricaoReceita"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/txtDescricaoReceita2" />
+
+            <TextView
+                android:id="@+id/txtDescricaoReceita2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Descrição da Receita:"
+                android:textColor="#ffafcc"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextDescricaoReceita" />
 
             <TextView
                 android:id="@+id/text_custoTotal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFFFF"
+                android:layout_marginTop="60dp"
                 android:text="R$:"
+                android:textColor="#ffafcc"
                 android:textSize="20sp"
-                app:layout_constraintTop_toBottomOf="@+id/txtDescricaoReceita"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/txtDescricaoReceita" />
 
             <TextView
                 android:id="@+id/textViewIngredientes"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Ingredientes"
-                android:textColor="#FFFFFF"
+                android:text="Ingredientes:"
+                android:textColor="#ffafcc"
                 android:textSize="20sp"
-                app:layout_constraintTop_toBottomOf="@+id/text_custoTotal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/text_custoTotal" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewIngredientes"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textColor="#FFFFFF"
-                app:layout_constraintTop_toBottomOf="@+id/textViewIngredientes"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewIngredientes" />
 
             <Button
                 android:id="@+id/btnEditar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Editar"
                 android:backgroundTint="#ffafcc"
+                android:text="Editar"
                 android:visibility="visible"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerViewIngredientes"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/txtDescricaoReceita" />
 
             <Button
                 android:id="@+id/btnSalvar"
@@ -122,8 +144,9 @@
                 android:text="Salvar"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerViewIngredientes" />
+                app:layout_constraintTop_toBottomOf="@+id/txtDescricaoReceita"  />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
