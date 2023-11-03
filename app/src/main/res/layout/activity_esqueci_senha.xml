@@ -3,13 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient">
 
     <EditText
         android:id="@+id/txt_emaillogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
         android:backgroundTint="#ffafcc"
         android:hint="Email"
         android:minHeight="48dp"
@@ -23,6 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="50dp"
+        android:textColor="#FFFFFF"
         android:text="Se não lembra sua senha, digite o seu email que iremos mandar um email para poder alterar."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,6 +37,7 @@
 
     <Button
         android:id="@+id/btn_resetemail"
+        android:textColor="#FFFFFF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Enviar email para recuperar senha"
