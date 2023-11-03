@@ -2,8 +2,10 @@ package com.example.receitaaplicativo;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -50,6 +52,18 @@ public class AdicionarReceitaActivity extends AppCompatActivity {
         btnConcluirReceita = findViewById(R.id.btnConcluirReceita);
         btnEditarIngrediente = findViewById(R.id.btnEditarIngrediente);
 
+        // Inicialize o Spinner
+        Spinner spinnerUnidade = findViewById(R.id.spinnerUnidade);
+
+        // Crie um ArrayAdapter usando o layout personalizado
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.unidades_array, R.layout.spinner_item);
+
+        // Defina o layout dropdown personalizado, se necessário
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Configure o adaptador no Spinner
+        spinnerUnidade.setAdapter(adapter);
+
         btnAdicionarIngrediente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,16 +73,22 @@ public class AdicionarReceitaActivity extends AppCompatActivity {
                 String quantidadeIngredienteText = editTextQuantidadeIngrediente.getText().toString();
                 String quantidadeUtilizadaText = editTextQuantidadeIngredienteUtilizado.getText().toString();
 
+                // Obtenha a unidade selecionada
+                String unidadeSelecionada = spinnerUnidade.getSelectedItem().toString();
+
                 if (nomeReceita.isEmpty()) {
-                    Toast.makeText(AdicionarReceitaActivity.this, "Digite um nome para a receita", Toast.LENGTH_SHORT).show();
                     Snackbar.make(v, "Digite um nome para a receita", Snackbar.LENGTH_SHORT).show();
                 } else if (nomeIngrediente.isEmpty() || precoIngredienteText.isEmpty() || quantidadeIngredienteText.isEmpty() || quantidadeUtilizadaText.isEmpty()) {
-                    Toast.makeText(AdicionarReceitaActivity.this, "", Toast.LENGTH_SHORT).show();
                     Snackbar.make(v, "Preencha todos os campos do ingrediente", Snackbar.LENGTH_SHORT).show();
                 } else {
                     double precoIngrediente = Double.parseDouble(precoIngredienteText);
                     double quantidadeIngrediente = Double.parseDouble(quantidadeIngredienteText);
                     double quantidadeUtilizada = Double.parseDouble(quantidadeUtilizadaText);
+
+                    // Ajuste a quantidade com base na unidade selecionada
+                    if (unidadeSelecionada.equals("KG/L")) {
+                        quantidadeIngrediente *= 1000; // Converta para gramas ou mililitros
+                    }
 
                     // Verifique se a receita já existe no documento do usuário
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -76,6 +96,7 @@ public class AdicionarReceitaActivity extends AppCompatActivity {
                         String userId = user.getUid();
                         DocumentReference userRef = db.collection("Usuarios").document(userId);
                         DocumentReference receitaRef = userRef.collection("MinhaReceita").document(nomeReceita);
+                        double finalQuantidadeIngrediente = quantidadeIngrediente;
                         receitaRef.get().addOnSuccessListener(documentSnapshot -> {
                             if (documentSnapshot.exists()) {
                                 // Receita já existe no documento do usuário
@@ -86,7 +107,7 @@ public class AdicionarReceitaActivity extends AppCompatActivity {
                                         .addOnCompleteListener(task -> {
                                             if (task.isSuccessful() && !task.getResult().isEmpty()) {
                                                 // Ingrediente já existe na receita
-                                                Snackbar.make(v, "Este ingrediente já está na receita, vocé pode edita-lo.", Snackbar.LENGTH_SHORT).show();
+                                                Snackbar.make(v, "Este ingrediente já está na receita, você pode editá-lo.", Snackbar.LENGTH_SHORT).show();
                                             } else {
                                                 // Ingrediente não existe na receita, podemos adicioná-lo
 
@@ -97,7 +118,7 @@ public class AdicionarReceitaActivity extends AppCompatActivity {
                                                 Map<String, Object> ingredienteData = new HashMap<>();
                                                 ingredienteData.put("nomeIngrediente", nomeIngrediente);
                                                 ingredienteData.put("preco", precoIngrediente);
-                                                ingredienteData.put("quantidade", quantidadeIngrediente);
+                                                ingredienteData.put("quantidade", finalQuantidadeIngrediente);
                                                 ingredienteData.put("quantidadeUtilizada", quantidadeUtilizada);
 
                                                 // Adicionar o documento do ingrediente ao Firestore

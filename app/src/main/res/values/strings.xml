@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ReceitaAplicativo</string>
+    <string-array name="unidades_array">
+        <item>KG/L</item>
+        <item>G/mL</item>
+        <item>Unidade</item>
+    </string-array>
 </resources>

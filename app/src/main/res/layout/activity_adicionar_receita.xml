@@ -61,41 +61,58 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.362" />
 
+
     <EditText
         android:id="@+id/editTextQuantidadeIngrediente"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:layout_marginTop="16dp"
         android:height="70dp"
-        android:hint="Quantidade do Ingrediente(na embalagem)"
-        android:layout_margin="10dp"
         android:backgroundTint="#ffafcc"
+        android:hint="Quantidade do Ingrediente\n (na embalagem)"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintEnd_toStartOf="@+id/spinnerUnidade"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.471" />
+
+    <Spinner
+        android:id="@+id/spinnerUnidade"
+        android:layout_width="128dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#ffafcc"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.912"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.458" />
 
     <EditText
         android:id="@+id/editTextQuantidadeIngredienteUsado"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:layout_marginTop="16dp"
         android:height="70dp"
-        android:hint="Quantidade do Ingrediente Utilizado"
-        android:layout_margin="10dp"
         android:backgroundTint="#ffafcc"
+        android:hint="Quantidade do Ingrediente Utilizado\n(exato especifique)"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.58" />
+        app:layout_constraintVertical_bias="0.564" />
 
     <Button
         android:id="@+id/btnAdicionarIngrediente"
