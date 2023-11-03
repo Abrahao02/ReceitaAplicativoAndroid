@@ -32,8 +32,8 @@ public class VerReceitaActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(receitaAdapter);
 
-        // Configure um ouvinte de clique para os itens do RecyclerView
         receitaAdapter.setOnItemClickListener(new ReceitaAdapter.OnItemClickListener() {
+            @Override
             public void onItemClick(Receita receita, String descricaoReceita) {
                 // Quando um nome de receita é clicado, abra a atividade "Detalhes da Receita"
                 Intent intent = new Intent(VerReceitaActivity.this, DetalhesReceitaActivity.class);
@@ -41,7 +41,14 @@ public class VerReceitaActivity extends AppCompatActivity {
                 intent.putExtra("descricaoReceita", descricaoReceita);
                 startActivity(intent);
             }
+
+
+            public void onExcluirClick(int position) {
+                // Trate a exclusão da receita aqui
+                receitaAdapter.removerReceita(position);
+            }
         });
+
 
         // Inicialize a classe de carregamento de receitas
         carregadorDeReceitas = new MinhaClasseDeCarregamentoDeReceitas();
