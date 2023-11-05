@@ -102,7 +102,7 @@
         android:id="@+id/keepMeLoggedInCheckBox1"
         android:layout_width="28dp"
         android:layout_height="38dp"
-        android:clickable="false"
+        android:clickable="true"
         app:layout_constraintBottom_toTopOf="@+id/buttonLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.088"

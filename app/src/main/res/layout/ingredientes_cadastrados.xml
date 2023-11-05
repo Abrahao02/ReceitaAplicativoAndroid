@@ -50,6 +50,7 @@
         android:id="@+id/imageViewExcluirReceita"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:tint="#ffafcc"
         app:srcCompat="@drawable/baseline_delete_24" />
 
 </LinearLayout>

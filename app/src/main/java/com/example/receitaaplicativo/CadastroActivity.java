@@ -95,15 +95,15 @@ public class CadastroActivity extends AppCompatActivity {
                                                         public void onComplete(@NonNull Task<Void> task) {
                                                             if (task.isSuccessful()) {
                                                                 Toast.makeText(CadastroActivity.this, "Cadastro realizado com sucesso! Verifique seu e-mail para ativar sua conta.", Toast.LENGTH_SHORT).show();
+                                                                // redirecionar para a tela principal aqui.
+                                                                Intent intent = new Intent(CadastroActivity.this, LoginActivity.class);
+                                                                startActivity(intent);
                                                             } else {
                                                                 Toast.makeText(CadastroActivity.this, "Erro ao enviar e-mail de verificação.", Toast.LENGTH_SHORT).show();
                                                             }
                                                         }
                                                     });
 
-                                            // redirecionar para a tela principal aqui.
-                                            Intent intent = new Intent(CadastroActivity.this, LoginActivity.class);
-                                            startActivity(intent);
                                         } else {
                                             Toast.makeText(CadastroActivity.this, "Falha ao criar conta. Verifique seus dados e tente novamente.", Toast.LENGTH_SHORT).show();
                                         }
