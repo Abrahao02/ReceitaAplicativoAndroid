@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +38,17 @@ public class LoginActivity extends AppCompatActivity {
         editTextLoginPassword = findViewById(R.id.txt_senhalogin2);
         buttonLogin = findViewById(R.id.buttonLogin);
         imageViewKeepMeLoggedIn = findViewById(R.id.keepMeLoggedInCheckBox1);
+
+        TextView esqueciminhasenha = findViewById(R.id.txt_esqueciminhasenha);
+
+        esqueciminhasenha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Redirecionar para a tela de esqueci_senha (EsqueciSenhaActivity)
+                Intent intent = new Intent(LoginActivity.this, EsqueciSenhaActivity.class);
+                startActivity(intent);
+            }
+        });
 
         imageViewKeepMeLoggedIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +108,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
 
 
     private boolean toggleKeepMeLoggedInState() {

@@ -16,33 +16,33 @@
         android:layout_height="wrap_content"
         android:width="250dp"
         android:backgroundTint="#ffafcc"
-        android:textColor="#000000"
         android:text="Adicionar Receita"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.412" />
+        app:layout_constraintVertical_bias="0.619" />
 
     <Button
         android:id="@+id/btnVerReceitas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:width="250dp"
+        android:backgroundTint="#ffafcc"
         android:text="Ver Receitas"
-        android:backgroundTint="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.512" />
+        app:layout_constraintVertical_bias="0.719" />
 
     <Button
         android:id="@+id/btnLogout"
         android:layout_width="75dp"
-        android:layout_height="35dp"
+        android:layout_height="48dp"
         android:layout_margin="10dp"
         android:width="250dp"
         android:backgroundTint="#ffafcc"
@@ -63,7 +63,7 @@
         android:text="Bem Vindo"
         android:textAlignment="center"
         android:textColor="#ffafcc"
-        android:textSize="34sp"
+        android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,6 +84,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="200dp"
+        android:layout_height="180dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.321"
+        app:srcCompat="@drawable/logofofo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

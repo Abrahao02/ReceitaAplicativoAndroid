@@ -8,12 +8,31 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.mediation.customevent.CustomEventBanner;
+
 public class MainActivity extends AppCompatActivity {
+
+    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         // Encontre o botão de login por ID
         Button loginButton = findViewById(R.id.btn_login);
@@ -41,16 +60,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        TextView esqueciminhasenha = findViewById(R.id.txt_esqueciminhasenha);
-
-        esqueciminhasenha.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Redirecionar para a tela de esqueci_senha (EsqueciSenhaActivity)
-                Intent intent = new Intent(MainActivity.this, EsqueciSenhaActivity.class);
-                startActivity(intent);
-            }
-        });
 
     }
 }

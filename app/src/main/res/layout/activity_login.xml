@@ -9,32 +9,6 @@
     android:background="@drawable/gradient"
     tools:context=".LoginActivity">
 
-    <TextView
-        android:id="@+id/txt_Login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:textColor="#ffafcc"
-        android:textSize="55sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.086" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="219dp"
-        android:layout_height="195dp"
-        android:src="@drawable/baseline_person_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.274"
-        app:tint="#ffafcc" />
-
     <EditText
         android:id="@+id/txt_emaillogin"
         android:layout_width="0dp"
@@ -150,5 +124,32 @@
         app:layout_constraintStart_toEndOf="@+id/keepMeLoggedInCheckBox1"
         app:layout_constraintTop_toBottomOf="@+id/txt_senhalogin2"
         app:layout_constraintVertical_bias="0.431" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="240dp"
+        android:layout_height="275dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.133"
+        app:srcCompat="@drawable/bookbonito" />
+
+    <TextView
+        android:id="@+id/txt_esqueciminhasenha"
+        android:layout_width="209dp"
+        android:layout_height="21dp"
+        android:text="Esqueci minha senha."
+        android:textAlignment="center"
+        android:textColor="#ff99c8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
+        app:layout_constraintVertical_bias="0.063" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
