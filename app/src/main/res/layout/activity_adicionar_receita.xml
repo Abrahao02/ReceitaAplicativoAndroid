@@ -113,19 +113,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.564" />
 
+
     <Button
         android:id="@+id/btnAdicionarIngrediente"
         android:layout_width="250dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
         android:backgroundTint="#ffafcc"
         android:text="Adicionar Ingrediente"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnEditarIngrediente"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.699" />
-
+        app:layout_constraintTop_toBottomOf="@+id/editTextQuantidadeIngredienteUsado"
+        app:layout_constraintVertical_bias="0.682" />
 
     <Button
         android:id="@+id/btnEditarIngrediente"
@@ -133,11 +133,12 @@
         android:layout_height="48dp"
         android:backgroundTint="#ffafcc"
         android:text="Editar Ingrediente"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnConcluirReceita"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.799" />
+        app:layout_constraintVertical_bias="0.953" />
 
     <Button
         android:id="@+id/btnConcluirReceita"
@@ -147,10 +148,11 @@
         android:backgroundTint="#ffafcc"
         android:text="Criar Receita"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.899" />
+        app:layout_constraintVertical_bias="0.898" />
 
     <TextView
         android:id="@+id/textView3"

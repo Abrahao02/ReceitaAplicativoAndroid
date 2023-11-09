@@ -22,50 +22,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.991"></com.google.android.gms.ads.AdView>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ReceitaS"
-        android:textAlignment="center"
-        android:textColor="#ff99c8"
-        android:textSize="48sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.128" />
-
-
-    <ImageView
-        android:id="@+id/imagemExemplo"
-        android:layout_width="227dp"
-        android:layout_height="307dp"
-        android:rotationX="17"
-        android:src="@drawable/baseline_menu_book_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.207"
-        app:tint="#ffc8dd" />
 
     <Button
         android:id="@+id/btn_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:width="350dp"
-        android:padding="10dp"
         android:backgroundTint="#ff99c8"
+        android:padding="10dp"
         android:text="Login"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/adView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.761" />
+        app:layout_constraintVertical_bias="0.84" />
 
     <Button
         android:id="@+id/btn_cadastro"
@@ -75,25 +47,24 @@
         android:backgroundTint="#ff99c8"
         android:padding="10dp"
         android:text="Cadastrar"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.661" />
-
-
+        app:layout_constraintVertical_bias="0.929" />
 
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="240dp"
         android:layout_height="275dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_cadastro"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.186"
-        app:srcCompat="@drawable/bookbonito" />
+        app:layout_constraintVertical_bias="0.683"
+        app:srcCompat="@drawable/livro"
+        app:tint="#ffafcc" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
