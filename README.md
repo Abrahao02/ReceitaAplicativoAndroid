@@ -19,5 +19,5 @@ Este é um aplicativo para dispositivos Android que permite aos usuários guarda
 ![Captura de Tela do Jogo](./Foto_02.jpeg)
 
 
-Autor
+# Autor
 Este aplicativo foi desenvolvido por Eduardo Abrahão.
